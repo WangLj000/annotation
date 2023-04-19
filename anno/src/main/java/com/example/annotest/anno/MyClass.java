@@ -1,7 +1,6 @@
 package com.example.annotest.anno;
 
 
-import static com.sun.org.apache.xalan.internal.xsltc.trax.TransformerFactoryImpl.PACKAGE_NAME;
 
 import com.google.auto.service.AutoService;
 
@@ -35,6 +34,7 @@ public class MyClass extends AbstractProcessor {
     Elements elementUtils ;
     final int TypePeople = 1;
     final int TypeTr069Get = 2;
+    public static final String PACKAGE_NAME = "com.example.annotest.anno.generate";
     //被注解处理工具调用，并传入 ProcessingEnvironment 参数。ProcessingEnvironment提供很多有用的工具类，比如Elements、Types、Filer和Messager等
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
@@ -62,7 +62,7 @@ public class MyClass extends AbstractProcessor {
             messager.printMessage(Diagnostic.Kind.NOTE, "FactoryMap isEmpty");
             return;
         }
-        MethodFactoryCreater.create(varName,PACKAGE_NAME, className, actionsMap, filer);
+        MethodFactoryCreater.create(varName,PACKAGE_NAME, className, actionsMap, filer,messager);
         messager.printMessage(Diagnostic.Kind.NOTE, "MethodFactoryCreater.create");
     }
 

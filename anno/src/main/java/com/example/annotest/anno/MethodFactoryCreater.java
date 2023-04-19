@@ -12,12 +12,15 @@ import java.io.IOException;
 import java.util.HashMap;
 
 import javax.annotation.processing.Filer;
+import javax.annotation.processing.Messager;
 import javax.lang.model.element.Modifier;
+import javax.tools.Diagnostic;
 
 import sun.rmi.runtime.Log;
 
 public class MethodFactoryCreater {
-    public static void create(String mapName,String packageName, String simpleName, HashMap<String, MethodProperty> actionsMap, Filer mFiler) {
+    public static void create(String mapName,String packageName, String simpleName, HashMap<String, MethodProperty> actionsMap, Filer mFiler,
+            Messager messager) {
         ClassName contextClazz = ClassName.get("android.content", "Context");
         ClassName cArrayMap = ClassName.get("android.util", "ArrayMap");
         ClassName cMethodProperty = ClassName.get("com.example.annotest.anno", "MethodProperty");
@@ -71,6 +74,7 @@ public class MethodFactoryCreater {
         try {
             javaFile.writeTo(mFiler);
         } catch (IOException e) {
+            messager.printMessage(Diagnostic.Kind.NOTE, e.getMessage().toString());
             System.out.println(e.toString());
         }
     }
