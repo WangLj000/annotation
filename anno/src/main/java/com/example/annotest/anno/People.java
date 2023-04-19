@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
  * @Version 1.0
  */
 @Target(ElementType.METHOD)
-@Retention(RetentionPolicy.RUNTIME)
+@Retention(RetentionPolicy.CLASS)
 public @interface People {
     String name() default "wanglongjiang";
     int age() default 25;
